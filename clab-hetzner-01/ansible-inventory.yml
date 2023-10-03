@@ -1,0 +1,30 @@
+all:
+  children:
+    linux:
+      hosts:
+        clab-hetzner-01-client1:
+          ansible_host: 172.20.20.12
+        clab-hetzner-01-client2:
+          ansible_host: 172.20.20.9
+        clab-hetzner-01-client3:
+          ansible_host: 172.20.20.2
+        clab-hetzner-01-client4:
+          ansible_host: 172.20.20.3
+        clab-hetzner-01-client5:
+          ansible_host: 172.20.20.10
+        clab-hetzner-01-client6:
+          ansible_host: 172.20.20.6
+        clab-hetzner-01-client7:
+          ansible_host: 172.20.20.5
+    srl:
+      hosts:
+        clab-hetzner-01-agg1:
+          ansible_host: 172.20.20.11
+        clab-hetzner-01-tor1:
+          ansible_host: 172.20.20.8
+        clab-hetzner-01-tor2:
+          ansible_host: 172.20.20.7
+    vr-sros:
+      hosts:
+        clab-hetzner-01-tor3:
+          ansible_host: 172.20.20.4
