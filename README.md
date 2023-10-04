@@ -6,7 +6,8 @@ This lab is to experience how isolated ports, VLAN re-write, BUM storm control e
 
 Simply clone this repo and run:
 
-```clab deploy -t hetzner-01.clab.yml```
+```clab deploy -t hetzner-01.clab.yml
+```
 
 You can ssh to clients with `admin/srllabs@123`.
 
