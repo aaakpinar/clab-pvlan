@@ -25,7 +25,7 @@ ssh admin@clab-hetzner-01-tor1
 To list the nodes, simply run:
 
 ```
-clab inspect -t {topology-filename}
+clab inspect -t hetzner-01.clab.yml
 ```
 
 # The topology
