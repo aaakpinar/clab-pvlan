@@ -6,7 +6,7 @@ This lab is to experience how isolated ports, VLAN re-write, BUM storm control e
 
 Simply clone this repo and run:
 
-`clab deploy -t hetzner-01.clab.yml`
+```clab deploy -t hetzner-01.clab.yml```
 
 # The topology
 
