@@ -79,7 +79,7 @@ set / acl mac-filter allow-promiscious-only-out entry 1000 action drop
 
 SR Linux has mac-vrfs instead of dedicated VLAN switching domains. That gives us flexibility to assign different VLANs on the access interfaces, which would only be significant on the link.
 
-In this diagram, ToR1 gets traffic from the client7 with VLAN 400 into the `mac-vrf-127` and switches it to `agg1` and tag it with the id 127 on the uplink.
+In this diagram, ToR1 gets traffic from the client7 with VLAN 400 into the `mac-vrf-127` and forwards it to `agg1` with the VLAN ID 127 on the uplink.
 
 <img src="https://github.com/aaakpinar/clab-pvlan/assets/17744051/f5834b2a-cb8a-40a7-8def-d91b0666b725" width=50% height=50%>
 
@@ -90,6 +90,5 @@ set / network-instance mac-vrf-127 admin-state enable
 set / network-instance mac-vrf-127 interface ethernet-1/13.400
 set / network-instance mac-vrf-127 interface ethernet-1/49.127
 ```
-
-
+ 
 
