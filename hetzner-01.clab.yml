@@ -6,7 +6,7 @@ topology:
       image: ghcr.io/nokia/srlinux:23.7.2
     vr-sros:
       image: registry.srlinux.dev/pub/vr-sros:23.7.R2
-      license: ./license-sros23.txt
+#      license: ./license-sros23.txt
     linux:
       image: ghcr.io/srl-labs/alpine:latest
 
