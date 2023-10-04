@@ -32,7 +32,9 @@ clab inspect -t hetzner-01.clab.yml
 
 ![image](https://github.com/aaakpinar/clab-pvlan/assets/17744051/f46b1a62-6b95-47f2-8e99-262b8cdeef69)
 
-Agg1, ToR1 and 2 are SR Linux. ToR3 is IXR-s.
+Agg1, ToR1 and 2 are SR Linux. ToR3 is IXR-s. 
+
+See the configs [here](configs/).
 
 # Isolated Ports
 
