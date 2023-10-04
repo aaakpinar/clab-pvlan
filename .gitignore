@@ -1,3 +1,4 @@
 clab-*
 license*
 *.bak
+.gitignore
