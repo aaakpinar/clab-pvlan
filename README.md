@@ -12,15 +12,21 @@ clab deploy -t hetzner-01.clab.yml
 
 You can ssh to clients with `admin/srllabs@123`.
 
-```ssh admin@clab-hetzner-01-client1```
+```
+ssh admin@clab-hetzner-01-client1
+```
 
 Also to SR Linux:
 
-```ssh admin@clab-hetzner-01-tor1```
+```
+ssh admin@clab-hetzner-01-tor1
+```
 
 To list the nodes, simply run:
 
-```clab inspect -t {topology-filename}``
+```
+clab inspect -t {topology-filename}
+```
 
 # The topology
 
