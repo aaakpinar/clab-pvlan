@@ -18,8 +18,7 @@ Agg1, ToR1 and 2 are SR Linux. ToR3 is IXR-s.
 
 The client interfaces are considered to be isolated so that they can only send/receive traffic from the uplink. 
 
-![image](https://github.com/aaakpinar/clab-pvlan/assets/17744051/37185631-b75f-48bd-81e6-8dde46e27638)
-
+<img src="https://github.com/aaakpinar/clab-pvlan/assets/17744051/37185631-b75f-48bd-81e6-8dde46e27638" width=60% height=60%>
 
 In/out mac-filters are applied for the isolation.
 
@@ -60,6 +59,7 @@ SR Linux has mac-vrfs instead of dedicated VLAN switching domains. That gives us
 
 In this diagram, ToR1 gets traffic from the client7 with VLAN 400 into the `mac-vrf-127` and switches it to `agg1` and tag it with the id 127 on the uplink.
 
-![image](https://github.com/aaakpinar/clab-pvlan/assets/17744051/f5834b2a-cb8a-40a7-8def-d91b0666b725)
+<img src="https://github.com/aaakpinar/clab-pvlan/assets/17744051/f5834b2a-cb8a-40a7-8def-d91b0666b725" width=50% height=50%>
+
 
 
