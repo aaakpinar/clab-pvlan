@@ -42,7 +42,7 @@ The client interfaces are considered to be isolated so that they can only send/r
 
 The clients can only reach to the gateway, 192.168.0.1.
 
-In/out mac-filters are applied for the isolation.
+In/out mac-filters are applied for the isolation in ToR1.
 
 ```
 set / acl
@@ -82,6 +82,14 @@ SR Linux has mac-vrfs instead of dedicated VLAN switching domains. That gives us
 In this diagram, ToR1 gets traffic from the client7 with VLAN 400 into the `mac-vrf-127` and switches it to `agg1` and tag it with the id 127 on the uplink.
 
 <img src="https://github.com/aaakpinar/clab-pvlan/assets/17744051/f5834b2a-cb8a-40a7-8def-d91b0666b725" width=50% height=50%>
+
+```
+set / network-instance mac-vrf-127
+set / network-instance mac-vrf-127 type mac-vrf
+set / network-instance mac-vrf-127 admin-state enable
+set / network-instance mac-vrf-127 interface ethernet-1/13.400
+set / network-instance mac-vrf-127 interface ethernet-1/49.127
+```
 
 
 
