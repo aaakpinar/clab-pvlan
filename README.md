@@ -8,6 +8,18 @@ Simply clone this repo and run:
 
 ```clab deploy -t hetzner-01.clab.yml```
 
+You can ssh to clients with `admin/srllabs@123`.
+
+```ssh admin@clab-hetzner-01-client1```
+
+Also to SR Linux:
+
+```ssh admin@clab-hetzner-01-tor1```
+
+To list the nodes, simply run:
+
+```clab inspect -t {topology-filename}``
+
 # The topology
 
 ![image](https://github.com/aaakpinar/clab-pvlan/assets/17744051/f46b1a62-6b95-47f2-8e99-262b8cdeef69)
@@ -19,6 +31,8 @@ Agg1, ToR1 and 2 are SR Linux. ToR3 is IXR-s.
 The client interfaces are considered to be isolated so that they can only send/receive traffic from the uplink. 
 
 <img src="https://github.com/aaakpinar/clab-pvlan/assets/17744051/37185631-b75f-48bd-81e6-8dde46e27638" width=60% height=60%>
+
+The clients can only reach to the gateway, 192.168.0.1.
 
 In/out mac-filters are applied for the isolation.
 
