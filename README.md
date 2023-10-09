@@ -1,5 +1,3 @@
-This is the first draft. The lab and README will be updated.
-
 # Containerlab Setup
 
 This lab is to experience how isolated ports, VLAN re-write, BUM storm control etc. can be implemented in SR Linux.
@@ -32,7 +30,13 @@ clab inspect -t hetzner-01.clab.yml
 
 ![image](https://github.com/aaakpinar/clab-pvlan/assets/17744051/f46b1a62-6b95-47f2-8e99-262b8cdeef69)
 
-Agg1, ToR1 and 2 are SR Linux. ToR3 is IXR-s. 
+Agg1, ToR1 and 2 are SR Linux. ToR3 is IXR-s and optional for SROS test. 
+
+>The ToR and the clients connected to it are commented out to focus on SRL.
+
+    ```yaml
+    --8<-- "https://raw.githubusercontent.com/aaakpinar/clab-pvlan/main/hetzner-01.clab.yml"
+    ```
 
 See the configs [here](configs/).
 
@@ -43,6 +47,8 @@ The client interfaces are considered to be isolated so that they can only send/r
 <img src="https://github.com/aaakpinar/clab-pvlan/assets/17744051/37185631-b75f-48bd-81e6-8dde46e27638" width=60% height=60%>
 
 The clients can only reach to the gateway, 192.168.0.1.
+
+## Isolation with MAC-filter
 
 In/out mac-filters are applied for the isolation in ToR1.
 
@@ -75,6 +81,52 @@ set / acl mac-filter allow-promiscious-only-out entry 10 match source-mac mask F
 set / acl mac-filter allow-promiscious-only-out entry 1000
 set / acl mac-filter allow-promiscious-only-out entry 1000 action
 set / acl mac-filter allow-promiscious-only-out entry 1000 action drop
+```
+
+## Isolation with IP-filter
+
+Ingree IP-filter applied to allow traffic only to gateway.
+
+```
+set / acl
+set / acl ipv4-filter allow-only-promiscious-in
+set / acl ipv4-filter allow-only-promiscious-in entry 10
+set / acl ipv4-filter allow-only-promiscious-in entry 10 action
+set / acl ipv4-filter allow-only-promiscious-in entry 10 action accept
+set / acl ipv4-filter allow-only-promiscious-in entry 10 match
+set / acl ipv4-filter allow-only-promiscious-in entry 10 match destination-ip
+set / acl ipv4-filter allow-only-promiscious-in entry 10 match destination-ip address 192.168.0.1
+set / acl ipv4-filter allow-only-promiscious-in entry 10 match destination-ip mask 0.0.0.0
+set / acl ipv4-filter allow-only-promiscious-in entry 1000
+set / acl ipv4-filter allow-only-promiscious-in entry 1000 action
+set / acl ipv4-filter allow-only-promiscious-in entry 1000 action drop
+```
+
+A static proxy ARP entry is added under the MAC-VRF as a security mechanism so ARP requests for gateway are always correct and replied by the ToR.
+
+```
+set / network-instance mac-vrf-100 bridge-table proxy-arp
+set / network-instance mac-vrf-100 bridge-table proxy-arp static-entries
+set / network-instance mac-vrf-100 bridge-table proxy-arp static-entries neighbor 192.168.0.1
+set / network-instance mac-vrf-100 bridge-table proxy-arp static-entries neighbor 192.168.0.1 link-layer-address 1A:D9:00:FF:00:41
+```
+
+Also, a static MAC forwarding entry for the gateway to ensure L2 security.
+```
+set / network-instance mac-vrf-100 bridge-table static-mac
+set / network-instance mac-vrf-100 bridge-table static-mac mac 1A:D9:00:FF:00:41
+set / network-instance mac-vrf-100 bridge-table static-mac mac 1A:D9:00:FF:00:41 destination ethernet-1/49.0
+```
+
+# Storm Control (BUM Rate-Limiting)
+
+To rate-limit BUM traffic on bridged subinterfaces.
+
+```
+set / interface ethernet-1/11 ethernet storm-control units kbps
+set / interface ethernet-1/11 ethernet storm-control broadcast-rate 32000
+set / interface ethernet-1/11 ethernet storm-control multicast-rate 32000
+set / interface ethernet-1/11 ethernet storm-control unknown-unicast-rate 0
 ```
 
 # VLAN Re-write
