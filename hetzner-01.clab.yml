@@ -19,13 +19,13 @@ topology:
       kind: srl
       type: ixrd2l
       startup-config: configs/tor2.cfg
-    tor3:
-      kind: vr-sros
-      type: ixr-s
-#      startup-config: configs/tor3.cfg
-      env:
-        # boot delay in seconds
-        BOOT_DELAY: 10
+#     tor3:
+#       kind: vr-sros
+#       type: ixr-s
+# #      startup-config: configs/tor3.cfg
+#       env:
+#         # boot delay in seconds
+#         BOOT_DELAY: 10
     agg1:
       kind: srl
       type: ixrd3l
@@ -48,14 +48,14 @@ topology:
         - ip link set eth1 down 
         - ip link set eth1 up 
     
-    client3:
-      kind: linux
-      exec:
-        # eth1 config
-        - ip link set address 00:c1:ab:00:00:13 dev eth1
-        - ip addr add 192.168.0.13/24 dev eth1
-        - ip link set eth1 down 
-        - ip link set eth1 up 
+    # client3:
+    #   kind: linux
+    #   exec:
+    #     # eth1 config
+    #     - ip link set address 00:c1:ab:00:00:13 dev eth1
+    #     - ip addr add 192.168.0.13/24 dev eth1
+    #     - ip link set eth1 down 
+    #     - ip link set eth1 up 
 
     client4:
       kind: linux
@@ -75,14 +75,14 @@ topology:
         - ip link set eth1 down 
         - ip link set eth1 up 
 
-    client6:
-      kind: linux
-      exec:
-        # eth1 config
-        - ip link set address 00:c1:ab:00:00:16 dev eth1
-        - ip addr add 192.168.0.16/24 dev eth1
-        - ip link set eth1 down 
-        - ip link set eth1 up 
+    # client6:
+    #   kind: linux
+    #   exec:
+    #     # eth1 config
+    #     - ip link set address 00:c1:ab:00:00:16 dev eth1
+    #     - ip addr add 192.168.0.16/24 dev eth1
+    #     - ip link set eth1 down 
+    #     - ip link set eth1 up 
 
     client7:
       kind: linux
@@ -101,12 +101,12 @@ topology:
     # inter-switch links
     - endpoints: ["tor1:e1-49", "agg1:e1-1"]
     - endpoints: ["tor2:e1-49", "agg1:e1-2"]
-    - endpoints: ["tor3:eth32", "agg1:e1-3"]
+    # - endpoints: ["tor3:eth32", "agg1:e1-3"]
     # ce links
     - endpoints: ["client1:eth1", "tor1:e1-11"]
     - endpoints: ["client2:eth1", "tor2:e1-11"]
-    - endpoints: ["client3:eth1", "tor3:eth11"]
+    # - endpoints: ["client3:eth1", "tor3:eth11"]
     - endpoints: ["client4:eth1", "tor1:e1-12"]
     - endpoints: ["client5:eth1", "tor2:e1-12"]
-    - endpoints: ["client6:eth1", "tor3:eth12"]
+    # - endpoints: ["client6:eth1", "tor3:eth12"]
     - endpoints: ["client7:eth1", "tor1:e1-13"]
