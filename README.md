@@ -118,6 +118,11 @@ set / network-instance mac-vrf-100 bridge-table static-mac mac 1A:D9:00:FF:00:41
 set / network-instance mac-vrf-100 bridge-table static-mac mac 1A:D9:00:FF:00:41 destination ethernet-1/49.0
 ```
 
+When IP filters are used to isolate interfaces, the same ACL can be used for all interfaces so that the isolation rule won't utilize many resource from the TCAM table.
+
+
+https://github.com/aaakpinar/clab-pvlan/assets/17744051/8c57d7d0-792b-43a1-b6fd-e92efa97c10e
+
 # Storm Control (BUM Rate-Limiting)
 
 To rate-limit BUM traffic on bridged subinterfaces.
