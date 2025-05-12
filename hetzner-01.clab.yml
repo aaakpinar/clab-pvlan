@@ -3,7 +3,7 @@ name: hetzner-01
 topology:
   kinds:
     srl:
-      image: ghcr.io/nokia/srlinux:23.7.2
+      image: ghcr.io/nokia/srlinux:24.10.1
     vr-sros:
       image: registry.srlinux.dev/pub/vr-sros:23.7.R2
 #      license: ./license-sros23.txt
